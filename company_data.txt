@@ -1,0 +1,6 @@
+About Conzummate: Conzummate is a premier technology solutions provider specializing in cloud architecture, web development, AI integration, and cybersecurity systems.
+Services: We offer high-quality web applications using Flask and React, cloud migration services, custom AI chatbot development, and robust data protection dashboards.
+Portfolio: Our notable projects include 'ShopEasy' (an advanced e-commerce platform) and 'Sentinel Cybersec Sys' (a real-time network anomaly detection dashboard).
+FAQs: 
+Q: How can I contact Conzummate? A: You can reach us via email at contact@conzummate.com or through our official website.
+Q: Do you provide post-deployment support? A: Yes, we provide 24/7 technical monitoring and maintenance support for all deployed architecture.
