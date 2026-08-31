@@ -4,8 +4,7 @@ from openai import OpenAI
 
 app = Flask(__name__)
 
-# Yeh line aapke Environment Variable se key uthayegi
-OPENAI_API_KEY = os.environ.get("GROQ_API_KEY")
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 client = OpenAI(
     api_key=OPENAI_API_KEY,
@@ -79,6 +78,8 @@ def chat():
             temperature=0.0
         )
         
+        reply = response.choices[0].message.content
+        return jsonify({"response": reply})
         reply = response.choices[0].message.content
         return jsonify({"response": reply})
 
