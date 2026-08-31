@@ -13,6 +13,7 @@ Flask-Login==0.6.3
 Flask-SQLAlchemy==3.1.1
 frozenlist==1.8.0
 greenlet==3.5.1
+groq
 httpx==0.28.1
 idna==3.11
 itsdangerous==2.2.0
@@ -25,7 +26,6 @@ langgraph==1.2.5
 langsmith==0.8.16
 MarkupSafe==3.0.3
 multidict==6.7.1
-openai==2.43.0
 orjson==3.11.9
 packaging==25.0
 pydantic==2.13.4
