@@ -71,13 +71,13 @@ def chat():
             {"role": "user", "content": user_input}
         ]
 
-        response = client.chat.completions.create(
-            model="llama-3.1-8b-instant",
-            messages=messages,
-            temperature=0.0
-        )
+       
 
-        reply = response.choices[0].message.content
+        reply = response = client.chat.completions.create(
+    model="llama-3.3-70b-versatile",  # <--- Isko update kar dein
+    messages=messages,
+    temperature=0.0
+)response.choices[0].message.content
         return jsonify({"response": reply})
 
     except Exception as e:
