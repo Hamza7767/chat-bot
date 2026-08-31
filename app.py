@@ -4,8 +4,8 @@ from openai import OpenAI
 
 app = Flask(__name__)
 
-# Ye line aapke Environment Variable se key uthayegi
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+# Yeh line aapke Environment Variable se key uthayegi
+OPENAI_API_KEY = os.environ.get("GROQ_API_KEY")
 
 client = OpenAI(
     api_key=OPENAI_API_KEY,
