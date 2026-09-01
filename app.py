@@ -1,22 +1,17 @@
 import os
 from flask import Flask, render_template, request, jsonify
-from openai import OpenAI
+from groq import Groq
 
 app = Flask(__name__)
 
+# Official Groq client initialization
 client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
-
-client = OpenAI(
-    api_key=OPENAI_API_KEY,
-    base_url="https://api.groq.com/openai/v1"
-)
 
 company_context = ""
 
-
 # 📂 2. Data Loading Function
 def initialize_bot():
-    global client, company_context
+    global company_context
     try:
         if os.path.exists("company_data.txt"):
             with open("company_data.txt", "r", encoding="utf-8") as f:
@@ -31,6 +26,9 @@ def initialize_bot():
     except Exception as e:
         print(f"Init Error: {e}")
 
+# Call initialization on start
+initialize_bot()
+
 
 # 🌐 3. Flask Routes
 @app.route("/")
@@ -40,7 +38,7 @@ def home():
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    global client, company_context
+    global company_context
     if not client:
         return jsonify({"response": "System Error: Groq client is not initialized."})
 
@@ -64,13 +62,10 @@ def chat():
                     "User: conzummate can offer web development\n"
                     "Assistant: Yes, Conzummate is an expert web development company that provides high-quality web applications using frameworks like Flask and React. Our services include custom web development, e-commerce platforms (like ShopEasy), and frontend/backend solutions.\n\n"
                     f"Context:\n{company_context}"
-
                 )
             },
             {"role": "user", "content": user_input}
         ]
-
-       
 
         response = client.chat.completions.create(
             model="llama-3.3-70b-versatile",
@@ -80,14 +75,12 @@ def chat():
         
         reply = response.choices[0].message.content
         return jsonify({"response": reply})
-        reply = response.choices[0].message.content
-        return jsonify({"response": reply})
 
     except Exception as e:
         return jsonify({"response": f"Error: {str(e)}"})
 
-# 🏁 4. App Start
+
+# 🏁 4. App Start (For Local Testing)
 if __name__ == "__main__":
-    initialize_bot()
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
